@@ -52,8 +52,11 @@ OSC is a network based communication protocol. It is build on top of the UPD pro
 OSC is widely used and almost every creative coding frameworks either has direct support for OSC or offers libraries and plugins to communicate via OSC.
 * [processing: OSC P5](http://www.sojamo.de/libraries/oscP5/)
 * [openFrameworks: ofxOsc](https://github.com/openframeworks/openFrameworks/tree/master/addons/ofxOsc)
+* [arduino: CNMAT/OSC](https://github.com/CNMAT/OSC)
 
 [ofOSCDebugger](https://github.com/thomasgeissl/ofOSCDebugger) might be useful for debugging OSC communications.
+
+OSC runs typically on top of UPD, hence it is not suitable for browser applications. In very raw cases OSC can be sent on top of TCP or serial (SLIP encoding), but this is not very widely supported.
 
 ### I/O
 Wekinator provides examples for camera, audio, mouse input, and many more. At the time of writing, some of them are already outdated, but it is relatively simple to write your own custom input and output software.
