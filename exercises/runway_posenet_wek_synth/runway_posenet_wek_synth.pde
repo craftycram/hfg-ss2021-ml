@@ -28,11 +28,12 @@ void draw() {
         if (k == 0) {
           push();
           fill(255,0,0);
-          ellipse(x * width, y * height, ellipseSize *2, ellipseSize *2);
+          ellipse(x * width, y * height, ellipseSize, ellipseSize);
           sendOsc(x, y);
           pop();
+        } else {
+          ellipse(x * width, y * height, ellipseSize, ellipseSize);
         }
-        ellipse(x * width, y * height, ellipseSize, ellipseSize);
       }
     }
   }
