@@ -18,7 +18,10 @@ Some definitions before we get started ...
 > Deep learning is an artificial intelligence (AI) function that imitates the workings of the human brain in processing data and creating patterns for use in decision making. Deep learning is a subset of machine learning.
 [src](https://www.investopedia.com/terms/d/deep-learning.asp)
 
-### How are they related?
+### Neural network
+[3Blue1Brown](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)'s youtube channel does a great job in explaining neural networks for those who wanna dive deeper.
+
+### How are these terms related?
 The terms Machine learning and Artificial intelligence are often used interchangeably, but that is not correct. ML is a subset of AI. [Symbolic AI](https://medium.com/@vbanda/good-old-fashioned-artificial-intelligence-b60800313dee) (or rule based AI or Good Old-Fashioned AI) is another subset of AI, and it does not make use of ML.
 
 ![](./assets/AI-vs-ML-vs-Deep-Learning_GABO-e1578660361203.png)
@@ -73,4 +76,25 @@ Amongst others, Wekinator does classification, Regression, and dynamic time warp
 * [regression](https://www.youtube.com/watch?v=4lxGh0jQWBo)
 * more videos can be found on Wekinator's [youtube channel](https://www.youtube.com/channel/UCot7vfr_9hTy2qp3ksTxGmg/videos)
 
-<!-- ## 2. Runway -->
+## 2. Runway
+[runwayml](https://runwayml.com/) is a commercial tool which makes it easy to use machine learning algorithms, without spending ages setting up the environment. It comes with a big selection of pretrained models, e.g. yolo, posenet or stylegan. Runway offers different interfaces - OSC, http and socket.io. Wekinator communicates in a similar way.
+
+Runway will give you 10$ GPU credit on registration, that should be enough for this course, but please have in mind that every operation on their GPU will cost. Some models can be run locally or even in docker containers, those are free of charge.
+
+### Installation
+* On osx it can be installed via brew: `brew install --cask runway`
+* On linux distributions it can be downloaded [here](https://support.runwayml.com/en/articles/3116268-runway-on-linux)
+* There is also a [web version](https://app.runwayml.com/) available
+
+### Tutorials
+* [youtube channel](https://www.youtube.com/c/RunwayML/videos)
+* [Coding Train](https://www.youtube.com/watch?v=ARnf4ilr9Hc)
+
+## 3. Google Colab
+Google Colab is quite a handy tool when it comes to run machine learning tasks in the cloud. It is compatible with [jupyter notebooks](https://jupyter.org/). With Colab you can create, collaborate with others and document machine learning projects. 
+It is very powerful, but on the other hand it can be very overwhelming. It is relatively straight forward to run already existing demos, e.g. the ones from tensorflow hub. Those can be tweaked easily, e.g. changing parameters or asset urls. But writing a notebook from scratch is beyond the scope of this course.
+
+Here are a couple of examples:
+* [biggan](https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/biggan_generation_with_tf_hub.ipynb#scrollTo=dSAyfDfnVugs)
+* [style transfer](https://colab.research.google.com/github/tensorflow/models/blob/master/research/nst_blogpost/4_Neural_Style_Transfer_with_Eager_Execution.ipynb)
+* [pix2pix](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/generative/pix2pix.ipynb)
