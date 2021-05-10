@@ -186,5 +186,6 @@ function draw() {
 
 // request new image on mouse click
 function mouseClicked() {
+  // TODO: map cursor position to request
   request();
 }
