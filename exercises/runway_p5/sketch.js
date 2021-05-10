@@ -136,6 +136,8 @@ let img;
 function request() {
   // TODO: create random z vector
 
+  /*
+  // creating completly new random vector
   z = [];
   for (let i = 0; i < 128; i++) {
     z = [...z, Math.random() < 0.5 ? Math.random() *
@@ -143,9 +145,11 @@ function request() {
     ];
   }
   console.log(z);
+  */
 
-  z[Math.round(Math.random() * z.length)] = Math.random() < 0.5 ?
-    Math.random() * -1 : Math.random();
+  // changing vector slightly (only one random value)
+  z[Math.round(Math.random() * z.length)] = Math.random() < 0.5 ? Math.random() * -1 : Math.random();
+
   const data = {
     z: z,
     category: "scorpion",
@@ -170,6 +174,7 @@ function setup() {
   request();
 }
 
+// create new image every two seconds
 // setInterval(request, 2000);
 
 function draw() {
@@ -179,8 +184,7 @@ function draw() {
   }
 }
 
+// request new image on mouse click
 function mouseClicked() {
   request();
 }
-
-// TODO: request new image on mouse click
