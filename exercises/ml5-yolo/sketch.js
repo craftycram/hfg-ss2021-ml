@@ -1,3 +1,4 @@
+var synth = window.speechSynthesis;
 let video;
 let detector;
 let detections = [];
@@ -21,6 +22,7 @@ function gotDetections(error, results) {
 
 function modelReady() {
   detector.detect(video, gotDetections);
+  say();
 }
 
 function draw() {
@@ -42,13 +44,14 @@ function say() {
   if (detections.length === 0) {
     setTimeout(say, 1000);
   } else {
-    const voices = [];
+    let text = '';
     detections.forEach((object) => {
-      voices.push(window.speechSynthesis.speak(new SpeechSynthesisUtterance(object.label)));
+      text += `${object.label} `;
     });
-    Promise.all(voices).then(() => {
+    var utterThis = new SpeechSynthesisUtterance(text);
+    synth.speak(utterThis);
+    utterThis.onend = function(event) {
       setTimeout(say, 1000);
-    });
+    }
   }
 }
-say();
