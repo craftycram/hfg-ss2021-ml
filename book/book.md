@@ -98,3 +98,16 @@ Here are a couple of examples:
 * [biggan](https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/biggan_generation_with_tf_hub.ipynb#scrollTo=dSAyfDfnVugs)
 * [style transfer](https://colab.research.google.com/github/tensorflow/models/blob/master/research/nst_blogpost/4_Neural_Style_Transfer_with_Eager_Execution.ipynb)
 * [pix2pix](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/generative/pix2pix.ipynb)
+
+## 4. ml5
+[ml5.js](https://ml5js.org/) is an easy to use machine learning library written in javascript. It uses tensorflow.js under the hood, abstracts away the complicated parts and provides and api which goes along very well with p5.js.
+ml5.js bundles common pre-trained models. The "boring" tasks (data collection, data preparation, model traning) are already done. Using pre-trained models is very often suffcient - at least it is a good starting point. And since ml5 is based in tensorflow, we can use google's [teachable machine](https://teachablemachine.withgoogle.com/) to train a model ourselves. 
+
+ml5 includes models for working with images/videos, sound and text.
+
+The [reference page](https://learn.ml5js.org/#/reference/object-detector?id=examples) includes lots of interactive demos.
+
+
+
+### Tutorials
+* [coding train](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6YPSwT06y_AEYTqIwbeam3y)
