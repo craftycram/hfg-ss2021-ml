@@ -2,7 +2,6 @@ var synth = window.speechSynthesis;
 let video;
 let detector;
 let detections = [];
-let parsedDetections = [];
 let lastDetections = [];
 
 function setup() {
@@ -39,29 +38,9 @@ function draw() {
     fill(255);
     textSize(24);
     text(object.label, object.x + 10, object.y + 24);
-    parsedDetections = [];
-    detections.forEach((r) => {
-      parsedDetections.push(r.label);
-    });
-    parsedDetections.forEach((r) => {
-      if (!lastDetections.includes(r)) window.speechSynthesis.speak(new SpeechSynthesisUtterance(r));
-    });
-    lastDetections = parsedDetections;
   }
-}
-
-function say() {
-  if (detections.length === 0) {
-    setTimeout(say, 1000);
-  } else {
-    let text = '';
-    detections.forEach((object) => {
-      text += `${object.label} `;
-    });
-    var utterThis = new SpeechSynthesisUtterance(text);
-    synth.speak(utterThis);
-    utterThis.onend = function(event) {
-      setTimeout(say, 1000);
-    }
-  }
+  detections.forEach((r) => {
+    if (!lastDetections.includes(r.label)) window.speechSynthesis.speak(new SpeechSynthesisUtterance(r.label));
+  });
+  lastDetections = detections.map((a) => a.label);
 }
