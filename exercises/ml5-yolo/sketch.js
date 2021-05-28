@@ -39,8 +39,6 @@ function draw() {
     textSize(24);
     text(object.label, object.x + 10, object.y + 24);
   }
-  detections.forEach((r) => {
-    if (!lastDetections.includes(r.label)) window.speechSynthesis.speak(new SpeechSynthesisUtterance(r.label));
-  });
+  detections.forEach((r) => !lastDetections.includes(r.label) ? window.speechSynthesis.speak(new SpeechSynthesisUtterance(r.label)) : null);
   lastDetections = detections.map((a) => a.label);
 }
