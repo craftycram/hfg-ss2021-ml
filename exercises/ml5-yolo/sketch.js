@@ -41,4 +41,5 @@ function draw() {
   }
   detections.forEach((r) => !lastDetections.includes(r.label) ? window.speechSynthesis.speak(new SpeechSynthesisUtterance(r.label)) : null);
   lastDetections = detections.map((a) => a.label);
+  // TODO: save object ts and add timeout
 }
