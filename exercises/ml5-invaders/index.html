@@ -76,8 +76,8 @@
 		 */
 		//Kugel abfeuern
 		function newGame() { // creates new game
-			//TODO Punktestände
-			//TODO Invaders erzeugen und in Array (invaders) schreiben damit sie gerendet werden können
+			//TODO: Punktestände
+			//TODO: Invaders erzeugen und in Array (invaders) schreiben damit sie gerendet werden können
 			// invaders.push(new Invader(5, 5, 10, 10, invId++));
 			invaderRows.push(new InvaderRow(0, 2, cols, 5, 1, 5, 5, Math
 				.random())); // creates instance of InvaderRow class & pushes it into array
@@ -195,7 +195,7 @@
 		}
 
 		function renderBullets() {
-			//TODO: Prüfen ob eine Kugel einen Invader oder ein Obstacle trifft, wenn ja Aktion auslösen
+			//TODO:: Prüfen ob eine Kugel einen Invader oder ein Obstacle trifft, wenn ja Aktion auslösen
 
 			// get every invader
 			for (let b = 0; b < currentBullets.length; b++) {
@@ -281,7 +281,7 @@
 		}
 
 		function renderInvaders() {
-			//TODO Invaders rendern
+			//TODO: Invaders rendern
 			run++; // increase render counter
 			// if (run >= 15) {
 			if (run >= speed) {
