@@ -6,6 +6,13 @@
 	<meta charset="utf-8">
 	<title>HACKINVADERS</title>
 	<link rel="stylesheet" href="style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+	<script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+	<script src="pose.js"></script>
+	<script src="pew.js"></script>
 </head>
 
 <body>
@@ -28,17 +35,17 @@
   		<!-- Hier landet später der Output aus Javascript -->
 	</pre>
 	<div class="controls-info">
-		<span class="control-key">←</span> Move left - 
-		<span class="control-key">Space</span> Shoot - 
+		<span class="control-key">←</span> Move left -
+		<span class="control-key">Space</span> Shoot -
 		<span class="control-key">→</span> Move right
-		<br> 
-		<span class="control-key">R</span> Restart - 
+		<br>
+		<span class="control-key">R</span> Restart -
 		<span class="control-key">P</span> Pause
 		<br>
-		<span class="control-key">L</span> Make invaders shoot - 
+		<span class="control-key">L</span> Make invaders shoot -
 		<span class="control-key">1-3</span> Difficulty
 	</div>
-	
+
 	<script src="Helper.js"></script> <!-- imports Helper class -->
 	<script src="Invader.js"></script> <!-- imports Invader class -->
 	<script src="InvaderRow.js"></script> <!-- imports InvaderRow class -->
@@ -98,10 +105,6 @@
 			currentBullets.push(new Bullet(spaceshipPos + 3, rows - 3,
 				bulletId++)); // creates instance of Bullet class & pushes it into array
 		}
-
-
-
-
 
 		//Spieler-Interaktionen verschicken
 		document.addEventListener('keydown', (event) => {
@@ -228,7 +231,7 @@
 			currentBullets.forEach((bullet) => {
 				bullet.posY -= 1; // move bullet
 				renderStr = Helper.setCharsAt(renderStr, Helper.xyToStringPos(bullet.posX, bullet.posY, cols),
-				"|"); // print bullet
+					"|"); // print bullet
 			})
 		}
 		let fun = false
@@ -543,7 +546,6 @@
 
 			}
 		}
-
 		//Es geht los - alle 40 Millisekunden rendern
 		newGame();
 		setInterval(render, 40)
