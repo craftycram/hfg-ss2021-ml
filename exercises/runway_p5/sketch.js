@@ -1,4 +1,4 @@
-const z = [
+let z = [
   0.5692547940465025,
   -1.2250757248750355,
   -0.1732131495968362,
@@ -132,8 +132,24 @@ const z = [
 const path = "http://localhost:8000/query";
 
 let img;
+
 function request() {
   // TODO: create random z vector
+
+  /*
+  // creating completly new random vector
+  z = [];
+  for (let i = 0; i < 128; i++) {
+    z = [...z, Math.random() < 0.5 ? Math.random() *
+      -1 : Math.random()
+    ];
+  }
+  console.log(z);
+  */
+
+  // changing vector slightly (only one random value)
+  z[Math.round(Math.random() * z.length)] = Math.random() < 0.5 ? Math.random() * -1 : Math.random();
+
   const data = {
     z: z,
     category: "scorpion",
@@ -152,10 +168,14 @@ function request() {
     }
   );
 }
+
 function setup() {
   createCanvas(512, 512);
   request();
 }
+
+// create new image every two seconds
+// setInterval(request, 2000);
 
 function draw() {
   background(128);
@@ -164,4 +184,8 @@ function draw() {
   }
 }
 
-// TODO: request new image on mouse click
+// request new image on mouse click
+function mouseClicked() {
+  // TODO: map cursor position to request
+  request();
+}

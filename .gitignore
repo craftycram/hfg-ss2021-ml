@@ -1,1 +1,4 @@
 .DS_Store
+
+# added node_modules to exclude in all sub folders & exercises
+node_modules
