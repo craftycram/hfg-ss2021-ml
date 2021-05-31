@@ -9,6 +9,8 @@ Object Detection using COCOSSD
 This example uses a callback pattern to create the classifier
 === */
 
+const synth = window.speechSynthesis;
+
 let video;
 let detector;
 let detections = [];
@@ -17,7 +19,7 @@ let data = new Map();
 
 const confidenceThreshold = 0.75;
 const countThreshold = 24;
-const timeout = 3000;
+const timeout = 200;
 
 function setup() {
   createCanvas(640, 480);
@@ -45,6 +47,7 @@ function gotDetections(error, results) {
             detection.label,
             detection.confidence
           );
+          window.speechSynthesis.speak(new SpeechSynthesisUtterance(detection.label));
         }
         data.set(detection.label, detection);
       } else {
