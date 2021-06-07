@@ -13,6 +13,7 @@ let vX = 0, vY = 0;
 let tX = 0, tY = 0;
 let xDif, yDif;
 let lastState = '';
+let stateHistory = [];
 
 const modelParams = {
     flipHorizontal: true,   // flip e.g for video  
@@ -50,17 +51,21 @@ function toggleVideo() {
 
 function runDetection() {
     model.detect(video).then(predictions => {
-        const current = predictions.find((p) => p.label === 'open' || p.label === 'closed' || p.label === 'point');
+        const filteredPredictions = predictions.filter((p) => p.label === 'open' || p.label === 'closed' || p.label === 'point');
+
+        let current;
+        // ignore empty array filteredPredictions as current is undefined
+        if (filteredPredictions.length === 1) current = filteredPredictions[0];
+        if (filteredPredictions.length === 2) current = filteredPredictions.sort((a, b) => a.bbox[0] < b.bbox[0])[0];
+        if (current) stateHistory.push(current.label);
+        if (stateHistory.length >= 4) stateHistory = stateHistory.slice(-4) || [];
+        console.log(stateHistory);
+        if (stateHistory.filter((e) => stateHistory[0] === e).length === 4) console.log('tada');
+        
         const vidW = document.getElementById('myvideo').width;
         const vidH = document.getElementById('myvideo').height;
-        
-        /*
-        if (current && current.label === 'closed') {
-          eX = map(current.bbox[0], 0, vidW, 0, width);
-          eY = map(current.bbox[1], 0, vidH, 0, height);
-        }
-        */
 
+        
         if (current) {
 
           vX = map(current.bbox[0], 0, vidW, 0, width / 2);
