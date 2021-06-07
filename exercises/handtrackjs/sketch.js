@@ -6,9 +6,13 @@ let updateNote = document.getElementById("updatenote");
 
 let isVideo = false;
 let model = null;
-let lastState = '';
 let eX = 0;
 let eY = 0;
+let startX = 0, startY = 0;
+let vX = 0, vY = 0;
+let tX = 0, tY = 0;
+let xDif, yDif;
+let lastState = '';
 
 const modelParams = {
     flipHorizontal: true,   // flip e.g for video  
@@ -46,9 +50,43 @@ function toggleVideo() {
 
 function runDetection() {
     model.detect(video).then(predictions => {
-        const temp = predictions.find((p) => p.label === 'open' || p.label === 'closed');
-        lastState = temp ? temp.label : 'none';
-        console.log(predictions);
+        const current = predictions.find((p) => p.label === 'open' || p.label === 'closed' || p.label === 'point');
+        const vidW = document.getElementById('myvideo').width;
+        const vidH = document.getElementById('myvideo').height;
+        
+        /*
+        if (current && current.label === 'closed') {
+          eX = map(current.bbox[0], 0, vidW, 0, width);
+          eY = map(current.bbox[1], 0, vidH, 0, height);
+        }
+        */
+
+        if (current) {
+
+          vX = map(current.bbox[0], 0, vidW, 0, width / 2);
+          tX = current.bbox[0];
+          vY = map(current.bbox[1], 0, vidH, 0, height / 2);
+          tY = current.bbox[1];
+
+          if (current.label === 'closed') {
+            eX = width/2;
+            eY = height/2;
+          }
+          
+          if (lastState === 'open' && current.label === 'point') {
+            startX = vX;
+            startY = vY;
+          }
+  
+          if (lastState === 'point' && current.label === 'open') {
+            eX += (vX - startX);
+            eY += (vY - startY);
+          }
+        }
+
+
+        lastState = current ? current.label : 'none';
+        // console.log(predictions);
         model.renderPredictions(predictions, canvas, context, video);
         if (isVideo) {
             requestAnimationFrame(runDetection);
@@ -66,13 +104,19 @@ handTrack.load(modelParams).then(lmodel => {
 
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(640, 480);
   eX = width / 2;
   eY = height / 2;
 }
 
 function draw() {
+  if (lastState === 'none' || lastState === 'closed') background(220);
   background(220);
-  ellipse(eX, eY, 20);
-  text(lastState, width / 2, height / 2);
+  noStroke();
+  fill(255, 0, 0);
+  ellipse(eX, eY, 10);
+  fill(125);
+  ellipse(tX, tY, 10);
+  line(eX, eY, startX, startY);
+  // text(lastState, width / 2, height / 2);
 }
