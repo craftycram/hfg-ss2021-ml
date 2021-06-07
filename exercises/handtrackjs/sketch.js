@@ -7,6 +7,8 @@ let updateNote = document.getElementById("updatenote");
 let isVideo = false;
 let model = null;
 let lastState = '';
+let eX = 0;
+let eY = 0;
 
 const modelParams = {
     flipHorizontal: true,   // flip e.g for video  
@@ -46,7 +48,7 @@ function runDetection() {
     model.detect(video).then(predictions => {
         const temp = predictions.find((p) => p.label === 'open' || p.label === 'closed');
         lastState = temp ? temp.label : 'none';
-        console.log(lastState);
+        console.log(predictions);
         model.renderPredictions(predictions, canvas, context, video);
         if (isVideo) {
             requestAnimationFrame(runDetection);
@@ -65,9 +67,12 @@ handTrack.load(modelParams).then(lmodel => {
 
 function setup() {
   createCanvas(400, 400);
+  eX = width / 2;
+  eY = height / 2;
 }
 
 function draw() {
   background(220);
-  text(lastState, width / 2, height / 2)
+  ellipse(eX, eY, 20);
+  text(lastState, width / 2, height / 2);
 }
