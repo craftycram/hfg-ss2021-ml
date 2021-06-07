@@ -6,7 +6,7 @@ let updateNote = document.getElementById("updatenote");
 
 let isVideo = false;
 let model = null;
-let lastState = {};
+let lastState = '';
 
 const modelParams = {
     flipHorizontal: true,   // flip e.g for video  
