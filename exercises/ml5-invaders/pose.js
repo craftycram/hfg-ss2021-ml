@@ -1,4 +1,8 @@
-const URL = "https://teachablemachine.withgoogle.com/models/ve34tyWh3/";
+
+// ml models: neigung: tvOybDdr2 ; hand: ve34tyWh3
+
+// const URL = "https://teachablemachine.withgoogle.com/models/ve34tyWh3/";
+const URL = "https://teachablemachine.withgoogle.com/models/tvOybDdr2/";
 let model, webcam, ctx, labelContainer, maxPredictions;
 
 async function initPose() {
@@ -41,10 +45,16 @@ async function predict() {
 
   if (result) {
     switch (result.className) {
+      case 'left':
+        spaceshipPos = Math.max(0, spaceshipPos - spaceshipOffsetSteps);
+        break;
       case 'links':
         spaceshipPos = Math.max(0, spaceshipPos - spaceshipOffsetSteps);
         break;
       case 'rechts':
+        spaceshipPos = Math.min(cols - 7, spaceshipPos + spaceshipOffsetSteps);
+        break;
+      case 'right':
         spaceshipPos = Math.min(cols - 7, spaceshipPos + spaceshipOffsetSteps);
         break;
       default:
