@@ -69,4 +69,5 @@ function setup() {
 
 function draw() {
   background(220);
+  text(lastState, width / 2, height / 2)
 }
